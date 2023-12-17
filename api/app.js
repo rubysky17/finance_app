@@ -1,9 +1,11 @@
 require("dotenv").config();
+
 const express = require('express');
 const morgan = require("morgan");
 const { default: helmet } = require("helmet");
 const compression = require("compression");
-const rootRouter = require("./src/routes/root.router")
+const rootRouter = require("./src/routes/root.router");
+const { PORT } = require("./src/configs/config.mongodb");
 
 const app = express();
 const cors = require('cors');
@@ -14,7 +16,8 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(compression());
 
-const PORT = 5001;
+// * init DB
+require("./src/dbs/init.mongodb");
 
 const corsOptions = {
     origin: `localhost:${PORT}`,
@@ -22,6 +25,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+
 // * init Router
 app.use("/v1/api", rootRouter);
 
