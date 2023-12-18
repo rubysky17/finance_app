@@ -33,6 +33,16 @@ class UserValidate {
 
         return { email, username, password }
     }
+
+    async checkLoginInfo(userInfo) {
+        const { email, password } = userInfo;
+
+        if (!email || !email.toLowerCase().match(EMAIL_REGEX)) throw new ConflictRequestError(EMAIL_INVALID);
+
+        this.passwordValidate(password);
+
+        return { email, password }
+    }
 }
 
 module.exports = new UserValidate();
