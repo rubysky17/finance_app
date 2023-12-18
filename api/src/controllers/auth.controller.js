@@ -15,6 +15,14 @@ class AuthController {
             metadata: await AuthService.login(req.body),
         }).send(res);
     };
+
+
+    logout = async (req, res, next) => {
+        new OK({
+            message: "Logout OK!",
+            metadata: await AuthService.logout(req.keyStore),
+        }).send(res);
+    };
 }
 
 module.exports = new AuthController();

@@ -112,6 +112,10 @@ class AuthService {
             return shopResult
         }
     }
+
+    static logout = async (keyStore) => {
+        return await KeytokenService.deleteToken(keyStore)
+    }
 }
 
 module.exports = AuthService;

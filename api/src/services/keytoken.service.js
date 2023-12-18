@@ -1,4 +1,5 @@
 const { KeyTokenModel } = require("../models/keytoken.model");
+const { Types } = require("mongoose")
 
 class KeyTokenService {
     async generateToken(
@@ -26,6 +27,12 @@ class KeyTokenService {
         } catch (error) {
 
         }
+    }
+
+    async deleteToken(keyStore) {
+        const _id = new Types.ObjectId(keyStore._id);
+
+        await KeyTokenModel.removeToken(_id)
     }
 }
 
