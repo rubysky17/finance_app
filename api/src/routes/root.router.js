@@ -1,8 +1,7 @@
-/**
- * New Import for Create new Router 
- * rootRouter.use("/shop", shopRouter);
- */
+const authRouter = require("./auth.router");
 
 const rootRouter = require("express").Router();
+
+rootRouter.use("/auth", authRouter)
 
 module.exports = rootRouter;
