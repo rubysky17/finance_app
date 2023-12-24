@@ -15,7 +15,7 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tasks App"),
+        title: const Text("To-do App"),
         actions: [
           IconButton(
             onPressed: () {},
