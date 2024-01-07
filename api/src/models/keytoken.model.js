@@ -8,8 +8,7 @@ const { Types } = Schema;
 
 const keytokenSchema = new Schema({
     userId: {
-        type: Types.ObjectId,
-        required: true
+        type: Schema.Types.ObjectId, ref: "User"
     },
     privateKey: {
         type: String,
