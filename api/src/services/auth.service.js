@@ -1,12 +1,21 @@
+// * Library
 const crypto = require('crypto');
 const bcrypt = require("bcrypt");
 
+// * validate and utils, helper
 const UserValidate = require("../validate/user.validate");
-const { UserModel } = require("../models/user.model");
-const KeytokenService = require("./keytoken.service");
-const { ConflictRequestError } = require("../core/error.response");
-const { createJWTWithKeys } = require("../utils/auth.utils");
 const { getInfoData } = require("../utils");
+const { createJWTWithKeys, verifyJWT } = require("../utils/auth.utils");
+
+// * other services
+const KeytokenService = require("./keytoken.service");
+
+// * Other Models
+const { UserModel } = require("../models/user.model");
+
+// * Error , Success handler
+const { ConflictRequestError, ForbiddenError, AuthFailureError } = require("../core/error.response");
+
 
 const saltRounds = 10;
 
@@ -114,7 +123,51 @@ class AuthService {
     }
 
     static logout = async (keyStore) => {
-        return await KeytokenService.deleteToken(keyStore)
+        return await KeytokenService.deleteToken(keyStore);
+    }
+
+    static handleRefreshToken = async (refreshToken) => {
+        const findTokenUsed = await KeytokenService.findRefreshTokenUsed(refreshToken);
+
+        if (findTokenUsed) {
+            const { userId } = await verifyJWT(refreshToken, findTokenUsed.privateKey);
+
+            await KeytokenService.deleteByUserId(userId);
+
+            // throw new ForbiddenError("Can't delete by userId!");
+        }
+
+        const currentToken = await KeytokenService.findByRefreshToken(refreshToken);
+
+        if (!currentToken) throw new AuthFailureError("Not find currentToken in DB");
+
+        const { userId, email } = await verifyJWT(
+            refreshToken,
+            currentToken.privateKey
+        );
+
+        const newTokens = await createJWTWithKeys(
+            {
+                userId,
+                email,
+            },
+            currentToken.publicKey,
+            currentToken.privateKey
+        );
+
+        await currentToken.updateOne({
+            $set: {
+                refreshToken: newTokens.refreshToken,
+            },
+            $addToSet: {
+                refreshTokenUsed: refreshToken,
+            },
+        });
+
+        return {
+            user: { userId, email },
+            newTokens,
+        };
     }
 }
 

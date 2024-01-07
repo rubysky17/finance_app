@@ -40,6 +40,18 @@ keytokenSchema.statics.removeToken = async (id) => {
     return await KeyTokenModel.findOneAndDelete(id);
 }
 
+keytokenSchema.statics.findByRefreshTokenUsed = async (refreshToken) => {
+    return await KeyTokenModel.findOne({
+        refreshTokenUsed: refreshToken
+    }).lean();
+}
+
+keytokenSchema.statics.findByRefreshToken = async (refreshToken) => {
+    return await KeyTokenModel.findOne({
+        refreshToken
+    });
+}
+
 const KeyTokenModel = model(DOCUMENT_NAME, keytokenSchema);
 
 

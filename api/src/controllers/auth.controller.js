@@ -23,6 +23,13 @@ class AuthController {
             metadata: await AuthService.logout(req.keyStore),
         }).send(res);
     };
+
+    handleRefreshToken = async (req, res, next) => {
+        new OK({
+            message: "Handle RefreshToken OK!",
+            metadata: await AuthService.handleRefreshToken(req.body.refreshToken),
+        }).send(res);
+    };
 }
 
 module.exports = new AuthController();
