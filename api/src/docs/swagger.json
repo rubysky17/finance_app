@@ -1,0 +1,109 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Finnace App API",
+        "description": "Tìm hiểu cách hoạt động APIs",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:5001",
+    "basePath": "/v1/api",
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API cho Người dùng"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "in": "headers",
+            "name": "authorization"
+        }
+    },
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "summary": "Đăng kí tài khoản",
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Đăng kí tài khoản người dùng mới trên hệ thống",
+                "parameters": [
+                    {
+                        "name": "User Model",
+                        "in": "body",
+                        "description": "Đăng kí tài khoản",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Đăng kí thành công"
+                    },
+                    "401": {
+                        "description": "Login details are not valid!!"
+                    },
+                    "404": {
+                        "description": "Email is not registered!"
+                    },
+                    "500": {
+                        "description": "User login failed!!"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "default": "VoManhDat"
+                },
+                "password": {
+                    "type": "string",
+                    "default": "1234567"
+                },
+                "avatar": {
+                    "type": "string",
+                    "required": "true",
+                    "default": ""
+                },
+                "isVerify": {
+                    "type": "boolean",
+                    "required": "false",
+                    "default": "false"
+                },
+                "isDeleted": {
+                    "type": "boolean",
+                    "required": "false",
+                    "default": "false"
+                },
+                "email": {
+                    "type": "string",
+                    "required": "true",
+                    "default": "joe.doe@example.com"
+                }
+            }
+        }
+    }
+}

@@ -6,15 +6,19 @@ const { default: helmet } = require("helmet");
 const compression = require("compression");
 const rootRouter = require("./src/routes/root.router");
 const { PORT } = require("./src/configs/config.mongodb");
+const swaggerUi = require('swagger-ui-express');
+const { swaggerDocs } = require("./src/docs/swagger");
+const swaggerDocument = require('./src/docs/swagger.json');
 
 const app = express();
 const cors = require('cors');
 
 // * init middlewares
-app.use(express.json());
-app.use(morgan("dev"));
-app.use(helmet());
-app.use(compression());
+app.use(express.json()); // Convert JSON string
+app.use(morgan("dev")); // Console.log terminal in Dev
+app.use(helmet()); // HTTP protection
+app.use(compression()); // HTTP protection
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Docs Swagger
 
 // * init DB
 require("./src/dbs/init.mongodb");
