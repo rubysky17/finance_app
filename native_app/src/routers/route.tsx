@@ -1,72 +1,87 @@
+import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {
-    ForgotPasswordScreen,
-    RegisterScreen,
-    LoginScreen
-} from "../pages/Auth";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StackBudget, StackCustomize, StackOverview, StackReport } from './Stack';
+import Icon from 'react-native-vector-icons/AntDesign';
 
-import { HomeScreen, OnboardingScreen } from '../pages';
-import BackButtonHeader from "../components/BackButton";
-import { SafeAreaView } from 'react-native';
+const Tab = createBottomTabNavigator();
 
-const Stack: any = createNativeStackNavigator();
+// ! cách navigate từ 1 stack của tab 1 qua tab 2
+{/* <Button title="Go to screen 3" onPress={() => {
+                const jumpToAction = TabActions.jumpTo('Tab 2');
+                navigation.dispatch(jumpToAction);
+            }} /> */}
 
-const Routers: any = [
-    {
-        name: "Home",
-        component: HomeScreen,
-        options: {
-            headerShown: false
-        }
-    },
-    {
-        name: "ForgotPassword",
-        component: ForgotPasswordScreen,
-        options: {}
-    },
-    {
-        name: "OnboardingScreen",
-        component: OnboardingScreen,
-        options: {
-            headerShown: false
-        }
-    },
-    {
-        name: "Register",
-        component: RegisterScreen,
-        options: (props: any) => {
-            const { navigation } = props;
+function TabNavigator() {
+    return (
+        <>
+            <Tab.Navigator>
+                <Tab.Screen
+                    name="Tổng quan"
+                    component={StackOverview}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ focused }) => <Icon
+                            name={"home"}
+                            size={20}
+                            color={focused ? "#1A1C1E" : "#ACB5BB"}
+                        />,
+                        tabBarActiveTintColor: "#1A1C1E",
+                        tabBarInactiveTintColor: "#ACB5BB",
+                    }}
 
-            return ({
-                headerTitle: "",
-                headerLeft: () => <BackButtonHeader navigation={navigation} />,
-                gestureEnabled: false,
-            })
-        },
-    },
-    {
-        name: "Login",
-        component: LoginScreen,
-        options: {
-            headerShown: false
-        }
-    }
-];
+                />
+                <Tab.Screen name="Báo cáo"
+                    component={StackReport}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ focused }) => <Icon
+                            name={"creditcard"}
+                            size={20}
+                            color={focused ? "#1A1C1E" : "#ACB5BB"}
+                        />,
+                        tabBarActiveTintColor: "#1A1C1E",
+                        tabBarInactiveTintColor: "#ACB5BB",
+                    }}
+                />
 
-export default function Route() {
-    return <NavigationContainer independent={true}>
-        <Stack.Navigator initialRouteName="Home" >
-            {
-                Routers.map((route: any, idx: any) => {
-                    return <Stack.Screen
-                        key={idx}
-                        name={route.name}
-                        component={route.component}
-                        {...route}
-                    />
-                })
-            }
-        </Stack.Navigator>
-    </NavigationContainer>
+                <Tab.Screen
+                    name="Ngân sách"
+                    component={StackBudget}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ focused }) => <Icon
+                            name={"wallet"}
+                            size={20}
+                            color={focused ? "#1A1C1E" : "#ACB5BB"}
+                        />,
+                        tabBarActiveTintColor: "#1A1C1E",
+                        tabBarInactiveTintColor: "#ACB5BB",
+                    }}
+                />
+
+                <Tab.Screen
+                    name="Cấu hình"
+                    component={StackCustomize}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ focused }) => <Icon
+                            name={"setting"}
+                            size={20}
+                            color={focused ? "#1A1C1E" : "#ACB5BB"}
+                        />,
+                        tabBarActiveTintColor: "#1A1C1E",
+                        tabBarInactiveTintColor: "#ACB5BB",
+                    }} />
+            </Tab.Navigator>
+        </>
+    );
+}
+
+export default function App() {
+    return (
+        <NavigationContainer independent={true}>
+            <TabNavigator />
+        </NavigationContainer>
+    );
 }
