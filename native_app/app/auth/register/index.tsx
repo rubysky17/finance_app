@@ -2,10 +2,10 @@ import { View, Text, Button } from 'react-native-ui-lib';
 import { StyleSheet, Dimensions } from 'react-native';
 import { useState } from "react";
 
-import { CTextInput } from "../../../components/TextInput";
+import { CTextInput } from "src/components/TextInput";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { useAppStore } from '../../../../AppProvider/hooks';
+import { useAppStore } from 'AppProvider/hooks';
 
 const screen = Dimensions.get('screen');
 const GAP = 30;

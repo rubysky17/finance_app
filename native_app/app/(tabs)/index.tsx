@@ -7,10 +7,8 @@ import {
 } from 'react-native-safe-area-context';
 
 import { formatNumber } from "@/src/helpers/helpers";
-import { useAppStore } from "../../../AppProvider/hooks";
-import { styles } from "./styles";
-import { Circle, G, Rect, Text as TextSvg } from 'react-native-svg';
-import { useState } from 'react';
+import { useAppStore } from "AppProvider/hooks";
+import { styles } from "src/styleSheet/home/styles";
 
 import { LineChart } from "react-native-gifted-charts";
 import NumberStatus from '@/src/components/NumberStatus';

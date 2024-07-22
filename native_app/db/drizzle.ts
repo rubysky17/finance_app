@@ -3,7 +3,6 @@ import { openDatabaseSync } from "expo-sqlite/next";
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 
 import migrations from './migrations/migrations';
-import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 
 const expoDb = openDatabaseSync("database.db");
 const db = drizzle(expoDb);

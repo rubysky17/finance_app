@@ -34,7 +34,7 @@ function OnboardingScreen({ navigation }: any) {
                         <View style={styles.bgColorContainerWithCurve} bg-neutral600>
 
                             <Image
-                                source={require('../../../assets/images/Mockup.png')}
+                                source={require('assets/images/Mockup.png')}
                                 resizeMode='cover'
                                 style={styles.imageCenter}
                             />
