@@ -4,13 +4,16 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
+    "dev": "expo start -c --ios",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "generate": "npx drizzle-kit generate"
+    "generate": "npx drizzle-kit generate",
+    "migrate": "npx drizzle-kit migrate",
+    "drop": "npx drizzle-kit drop"
   },
   "jest": {
     "preset": "jest-expo"

@@ -4,35 +4,13 @@ import { StatusBar } from 'expo-status-bar';
 
 import AppProvider from "../AppProvider";
 
-
 import { useMigrationHelper } from '@/db/drizzle';
 import { DatabaseProvider } from '@/db/provider';
 
 require("../src/presets");
 
 export default function Layout() {
-    const { success, error } = useMigrationHelper();
-
-    if (error) {
-        return (
-            <View >
-                <Text>Migration error: {error.message}</Text>
-            </View>
-        );
-    }
-    if (!success) {
-        return (
-            <View >
-                <Text>Migration is in progress...</Text>
-            </View>
-        );
-    }
-
-    return <App />
-}
-
-function App() {
-    return (<DatabaseProvider>
+    return <DatabaseProvider>
         <View style={styles.safeContainer}>
             <AppProvider>
                 <StatusBar style='auto' />
@@ -43,8 +21,23 @@ function App() {
             </AppProvider>
         </View>
     </DatabaseProvider>
-    );
 }
+
+// function App() {
+//     return (
+//         <DatabaseProvider>
+//             <View style={styles.safeContainer}>
+//                 <AppProvider>
+//                     <StatusBar style='auto' />
+
+//                     <Stack>
+//                         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+//                     </Stack>
+//                 </AppProvider>
+//             </View>
+//         </DatabaseProvider>
+//     );
+// }
 
 const styles = StyleSheet.create({
     safeContainer: {
