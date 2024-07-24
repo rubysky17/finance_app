@@ -12,6 +12,7 @@ import { styles } from "src/styleSheet/home/styles";
 
 import { LineChart } from "react-native-gifted-charts";
 import NumberStatus from '@/src/components/NumberStatus';
+import WhiteBox from '@/src/components/WhiteBox';
 
 const screen = Dimensions.get('screen');
 
@@ -24,6 +25,7 @@ function HomeScreen() {
     const app = useAppStore();
     const { systemColorScheme } = app;
     const insets = useSafeAreaInsets();
+
     const data = [
         { value: 15 },
         { value: 30 },
@@ -39,6 +41,7 @@ function HomeScreen() {
         { value: 44 },
         { value: 55 },
     ];
+
     return (
         <View style={
             styles.container
@@ -146,6 +149,18 @@ function HomeScreen() {
                             />
                         </View>
                     </View>
+                </View>
+
+                <View style={styles.containerReport}>
+                    <NavigateBar
+                        title={"Ví của tôi"}
+                        text={"Xem tất cả"}
+                        url={'wallet'}
+                    />
+
+                    <WhiteBox borderRadius={10}>
+                        <Text>Hello Wallet</Text>
+                    </WhiteBox>
                 </View>
 
                 <View style={styles.containerReport}>

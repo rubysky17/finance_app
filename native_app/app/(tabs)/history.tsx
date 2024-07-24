@@ -1,32 +1,9 @@
-import { useMigrationHelper } from "@/db/drizzle";
 import { useDatabase } from "@/db/provider";
 import { wallets, walletTypes } from "@/db/schema";
 import { SafeAreaView } from "react-native";
-import { View, Text, Button } from 'react-native-ui-lib';
+import { Text, Button } from 'react-native-ui-lib';
 
 export default function SkeletonScreen() {
-    const { success, error } = useMigrationHelper();
-
-    if (error) {
-        console.log({ error });
-
-        return (
-            <View >
-                <Text>Migration error: {error.message}</Text>
-            </View>
-        );
-    }
-
-    if (!success) {
-        console.log('Đang tải');
-
-        return (
-            <View >
-                <Text>Migration is in progress...</Text>
-            </View>
-        );
-    }
-
     const { db } = useDatabase();
 
     const insertWalletType = async () => {
@@ -39,8 +16,7 @@ export default function SkeletonScreen() {
         } catch (e) {
             console.log(e)
         }
-    }
-
+    };
 
     const insertWallet = async () => {
         try {
