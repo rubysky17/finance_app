@@ -155,7 +155,7 @@ function HomeScreen() {
                     <NavigateBar
                         title={"Ví của tôi"}
                         text={"Xem tất cả"}
-                        url={'wallet'}
+                        url={'(tabs)/wallet'}
                     />
 
                     <WhiteBox borderRadius={10}>

@@ -6,9 +6,6 @@ import AppProvider from "../AppProvider";
 
 import { useMigrationHelper } from '@/db/drizzle';
 import { DatabaseProvider } from '@/db/provider';
-import { Button } from 'react-native-ui-lib';
-import { AntDesign } from '@expo/vector-icons';
-import { router } from 'expo-router';
 
 require("../src/presets");
 
@@ -49,29 +46,6 @@ export default function Layout() {
                             title: "Thêm giao dịch"
                         }}
                         name={'create-transaction'}
-                    />
-
-                    <Stack.Screen
-                        name={'wallet'}
-                        options={{
-                            title: "Ví của tôi",
-                            headerLeft: () => (
-                                <Button
-                                    onPress={() => {
-                                        router.back()
-                                    }}
-                                    backgroundColor="transparent"
-                                    enableShadow
-                                    iconSource={() => {
-                                        return <AntDesign
-                                            name="arrowleft"
-                                            size={24}
-                                            color="black"
-                                        />
-                                    }}
-                                />
-                            ),
-                        }}
                     />
                 </Stack>
             </AppProvider>

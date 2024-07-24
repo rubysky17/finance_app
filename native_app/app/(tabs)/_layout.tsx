@@ -60,7 +60,7 @@ export default function TabLayout() {
                 }}
             />
 
-            < Tabs.Screen
+            <Tabs.Screen
                 name="budget"
                 options={{
                     title: 'Ngân sách',
@@ -70,13 +70,22 @@ export default function TabLayout() {
                 }}
             />
 
-            < Tabs.Screen
+            <Tabs.Screen
                 name="settings"
                 options={{
                     title: 'Tài khoản',
                     headerShown: false,
                     tabBarIcon: ({ color }) => <AntDesign name="user" size={20} color={color} />,
                     tabBarActiveTintColor: "#1A1C1E"
+                }}
+            />
+
+            <Tabs.Screen
+                name="wallet"
+                options={{
+                    title: 'Ẩn screen',
+                    headerShown: false,
+                    tabBarButton: () => null,
                 }}
             />
         </Tabs >
