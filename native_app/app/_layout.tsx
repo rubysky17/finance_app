@@ -14,7 +14,6 @@ export default function Layout() {
 
     if (error) {
         console.log({ error });
-
         return (
             <View >
                 <Text>Migration error: {error.message}</Text>
@@ -39,7 +38,6 @@ export default function Layout() {
 
                 <Stack>
                     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-
                     <Stack.Screen
                         options={{
                             presentation: "modal",

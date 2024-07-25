@@ -17,7 +17,6 @@ export default function TabLayout() {
                 }}
             />
 
-
             <Tabs.Screen
                 name="history"
                 options={{
@@ -83,8 +82,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="wallet"
                 options={{
-                    title: 'Ẩn screen',
-                    headerShown: false,
+                    title: 'Ví của tôi',
                     tabBarButton: () => null,
                 }}
             />

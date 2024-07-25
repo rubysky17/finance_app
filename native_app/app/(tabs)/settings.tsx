@@ -4,8 +4,6 @@ import { SafeAreaView } from "react-native";
 import { Text, Button } from 'react-native-ui-lib';
 
 export default function SkeletonScreen() {
-
-
     const { db } = useDatabase();
 
     const insertWalletType = async () => {
@@ -19,7 +17,6 @@ export default function SkeletonScreen() {
             console.log(e)
         }
     }
-
 
     const insertWallet = async () => {
         try {
@@ -37,8 +34,6 @@ export default function SkeletonScreen() {
         } catch (e) {
             console.log(e)
         }
-
-
     }
 
     return <SafeAreaView>

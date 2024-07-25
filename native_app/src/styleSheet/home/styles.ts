@@ -31,6 +31,12 @@ export const styles = StyleSheet.create({
         justifyContent: "center"
     },
     containerReport: {
+        marginRight: PADDING_X,
+        marginLeft: PADDING_X,
+        marginTop: 32
+
+    },
+    containerWalletList: {
         marginTop: (heightOfCard / 2) + 32,
         zIndex: 1,
         marginRight: PADDING_X,

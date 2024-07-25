@@ -1,18 +1,21 @@
-import { View, Text } from 'react-native-ui-lib';
+import { View, Text, Colors } from 'react-native-ui-lib';
 import { Dimensions, ScrollView } from "react-native";
-import Transaction from "@/src/components/Transaction";
-import NavigateBar from "@/src/components/NavigateBar";
 import {
     useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-
-import { formatNumber } from "@/src/helpers/helpers";
 import { useAppStore } from "AppProvider/hooks";
-import { styles } from "src/styleSheet/home/styles";
 
 import { LineChart } from "react-native-gifted-charts";
 import NumberStatus from '@/src/components/NumberStatus';
 import WhiteBox from '@/src/components/WhiteBox';
+import WalletTag from '@/src/components/Wallet/Tag';
+import Transaction from "@/src/components/Transaction";
+import NavigateBar from "@/src/components/NavigateBar";
+import CarouselContainer from '@/src/components/Carousel';
+
+import { styles } from "src/styleSheet/home/styles";
+import { formatNumber } from "@/src/helpers/helpers";
+import { SpendingDetail, TrendSpending } from '@/src/container/spending';
 
 const screen = Dimensions.get('screen');
 
@@ -85,7 +88,6 @@ function HomeScreen() {
                     }}>
                         <View style={{
                             height: heightOfCard / 2.7,
-                            // backgroundColor: 'blue',
                             width: widthOfChart,
                             position: "absolute",
                             top: 15,
@@ -140,7 +142,6 @@ function HomeScreen() {
                                 hideDataPoints
                                 areaChart
                                 startFillColor="#fde6eb"
-                                // backgroundColor={'yellow'}
                                 rulesColor="white"
                                 yAxisThickness={0} // Hide y-axis line
                                 xAxisThickness={0} // Hide x-axis line
@@ -151,7 +152,7 @@ function HomeScreen() {
                     </View>
                 </View>
 
-                <View style={styles.containerReport}>
+                <View style={styles.containerWalletList}>
                     <NavigateBar
                         title={"Ví của tôi"}
                         text={"Xem tất cả"}
@@ -159,16 +160,42 @@ function HomeScreen() {
                     />
 
                     <WhiteBox borderRadius={10}>
-                        <Text>Hello Wallet</Text>
+                        <>
+                            <WalletTag name={"Ví tiền mặt 1"} amount={35000} />
+                            <WalletTag name={"Ví tiền mặt 2"} amount={400000} />
+                            <WalletTag name={"Ví tiền mặt 3"} amount={1200000} />
+                        </>
                     </WhiteBox>
                 </View>
 
-                <View style={styles.containerReport}>
+                <View style={styles.containerSpending}>
                     <NavigateBar
                         title={"Báo cáo chi tiêu"}
                         text={"Xem báo cáo"}
                         url={'/'}
                     />
+
+                    <WhiteBox borderRadius={10}>
+                        <CarouselContainer
+                            height={250}
+                            showArrow
+                            labelStyle={{
+                                color: Colors.neutral
+                            }}
+                            pages={[
+                                {
+                                    id: 1,
+                                    container: <TrendSpending />,
+                                    label: 'Xu hướng'
+                                },
+                                {
+                                    id: 2,
+                                    container: <SpendingDetail />,
+                                    label: 'Chi tiết'
+                                },
+                            ]}
+                        />
+                    </WhiteBox>
                 </View>
 
 
@@ -178,7 +205,6 @@ function HomeScreen() {
                         text={"Xem tất cả"}
                         url={'/'}
                     />
-
 
                     <Transaction
                         date_trading={"16 tháng 6 2024"}
