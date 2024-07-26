@@ -177,7 +177,7 @@ function HomeScreen() {
 
                     <WhiteBox borderRadius={10}>
                         <CarouselContainer
-                            height={250}
+                            height={300}
                             showArrow
                             labelStyle={{
                                 color: Colors.neutral
@@ -185,19 +185,18 @@ function HomeScreen() {
                             pages={[
                                 {
                                     id: 1,
-                                    container: <TrendSpending />,
+                                    container: <TrendSpending height={200} />,
                                     label: 'Xu hướng'
                                 },
                                 {
                                     id: 2,
-                                    container: <SpendingDetail />,
+                                    container: <SpendingDetail height={200} />,
                                     label: 'Chi tiết'
                                 },
                             ]}
                         />
                     </WhiteBox>
                 </View>
-
 
                 <View style={styles.containerSpending}>
                     <NavigateBar

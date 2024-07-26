@@ -28,3 +28,9 @@ export const formatNumber = (
 
     return `${prefix}${result}`;
 };
+
+export class ChartHelper {
+    lineStepCalculate = (max, min, section) => {
+        return ((Math.abs(max - min)) / section)
+    }
+}

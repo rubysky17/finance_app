@@ -67,7 +67,7 @@ const CarouselContainer = (props: IProps) => {
                     onPress={goToPreviousPage}
                     style={styles.arrowButton}
                 >
-                    <Ionicons name="arrow-back" size={24} color={Colors.neutral} />
+                    <Ionicons name="arrow-back" size={16} color={Colors.neutral} />
                 </TouchableOpacity>
 
                 <Text
@@ -83,7 +83,7 @@ const CarouselContainer = (props: IProps) => {
                     onPress={goToNextPage}
                     style={styles.arrowButton}
                 >
-                    <Ionicons name="arrow-forward" size={24} color={Colors.neutral} />
+                    <Ionicons name="arrow-forward" size={16} color={Colors.neutral} />
                 </TouchableOpacity>
             </View>}
 
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         color: Colors.dark10,
     },
     pageIndicator: {
-        fontSize: 16,
+        fontSize: 12,
         color: Colors.dark10,
     },
     navigation: {
