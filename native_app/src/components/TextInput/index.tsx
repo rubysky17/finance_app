@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Text } from 'react-native-ui-lib';
+import { TextField } from 'react-native-ui-lib';
 
 export const CTextInput = (props) => {
     const {

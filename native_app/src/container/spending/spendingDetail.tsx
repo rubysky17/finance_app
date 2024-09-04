@@ -4,7 +4,6 @@ import { Colors, Text } from "react-native-ui-lib"
 import { AntDesign } from '@expo/vector-icons';
 import { BarChart } from "react-native-gifted-charts";
 
-
 const screen = Dimensions.get('screen');
 
 const PADDING_X = 15;
@@ -91,11 +90,14 @@ export default function SpendingDetail(props) {
                 </Text>
             </View>
         </View>
-    }
-    return <View style={{
-        height,
-        ...styles.container
-    }}>
+    };
+
+    return <View
+        style={{
+            height,
+            ...styles.container
+        }}
+    >
         {metricView()}
 
         <View style={styles.containerChart}>

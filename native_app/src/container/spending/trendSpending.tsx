@@ -146,7 +146,7 @@ export default function TrendSpending(props) {
                     width: 80,
                     position: 'absolute',
                     left: -8
-                }} // Customize x-axis label style
+                }}
             />
         </View>
     </View>
