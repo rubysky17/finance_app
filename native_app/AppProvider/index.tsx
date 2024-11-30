@@ -17,4 +17,4 @@ const AppProvider = (props: any) => {
     </AppContext.Provider>
 }
 
-export default AppProvider
+export default AppProvider;

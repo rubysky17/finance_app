@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Button, Colors } from 'react-native-ui-lib';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+
 export default function TabLayout() {
     return (
         <Tabs>

@@ -4,7 +4,6 @@ import { createId } from '@paralleldrive/cuid2';
 import { createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
-
 // * Tables
 export const walletTypes = sqliteTable('walletTypes', {
     id: text('id').primaryKey().$defaultFn(() => createId()).notNull(),
@@ -18,8 +17,11 @@ export const wallets = sqliteTable('wallets', {
     id: text('id').primaryKey().$defaultFn(() => createId()).notNull(),
     name: text('name').notNull(),
     description: text('description').notNull(),
-    walletTypeId: text('wallet_type_id').references(() => walletTypes.id),
-    enable: integer('enable', { mode: 'boolean' }).default(true),
+    walletTypeId: text("wallet_type_id")
+        .references(() => walletTypes.id, { onDelete: "restrict" }) // Khóa ngoại với ràng buộc
+        .notNull(),
+    enable: integer("enable", { mode: "boolean" }).default(true),
+    isDefault: integer("enable", { mode: "boolean" }).default(true),
     amount: integer('amount').notNull(),
     createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`)
 });
